@@ -5,8 +5,8 @@ public class CameraFollow : MonoBehaviour
     public Transform Target;
 
 
-    [Range(0.01f , 1f)]
-    public float Smoothspeed;
+    [Range(0.01f, 1f)]
+    public float SmoothSpeed;
 
     private Vector3 offset;
 
@@ -15,7 +15,7 @@ public class CameraFollow : MonoBehaviour
 
     private void Start()
     {
-        Smoothspeed = 0.5f;
+        SmoothSpeed = 0.5f;
         offset = transform.position - Target.position;
     }
 
@@ -23,7 +23,7 @@ public class CameraFollow : MonoBehaviour
     {
         Vector3 newPosition = Target.position + offset;
 
-        transform.position = Vector3.Slerp(transform.position, newPosition, Smoothspeed);
+        transform.position = Vector3.Slerp(transform.position, newPosition, SmoothSpeed);
 
         if (LookAt)
         {
