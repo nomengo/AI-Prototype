@@ -2,13 +2,12 @@
 
 public class DoorController : MonoBehaviour
 {
-    Animator animator;
+    [SerializeField]private Animator animator;
     bool doorOpen;
 
     private void Start()
     {
         doorOpen = false;
-        animator = GetComponent<Animator>();
     }
 
     private void OnTriggerEnter(Collider coll)
