@@ -17,6 +17,11 @@ public class DoorController : MonoBehaviour
             doorOpen = true;
             Doors("Open");
         }
+        else if(coll.gameObject.tag == "Agent")
+        {
+            doorOpen = true;
+            Doors("Open");
+        }
     }
 
     private void OnTriggerExit(Collider coll)

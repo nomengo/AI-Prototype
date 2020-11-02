@@ -15,7 +15,7 @@ public class CameraFollow : MonoBehaviour
 
     private void Start()
     {
-        SmoothSpeed = 0.5f;
+        SmoothSpeed = 1f;
         offset = transform.position - Target.position;
     }
 
