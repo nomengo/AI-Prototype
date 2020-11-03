@@ -5,27 +5,35 @@ public class DoorController : MonoBehaviour
     [SerializeField]private Animator animator;
     bool doorOpen;
 
+    public GameObject Tooltip;
+
     private void Start()
     {
+        Tooltip.SetActive(false);
         doorOpen = false;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            doorOpen = true;
+            Doors("Open");
+        }
     }
 
     private void OnTriggerEnter(Collider coll)
     {
         if(coll.gameObject.tag == "Player")
         {
-            doorOpen = true;
-            Doors("Open");
-        }
-        else if(coll.gameObject.tag == "Agent")
-        {
-            doorOpen = true;
-            Doors("Open");
+            Tooltip.SetActive(true);
+            Update();
         }
     }
 
     private void OnTriggerExit(Collider coll)
     {
+        Tooltip.SetActive(false);
         if (doorOpen)
         {
             doorOpen = false;
@@ -37,5 +45,7 @@ public class DoorController : MonoBehaviour
     {
         animator.SetTrigger(direction);
     }
+
+
 
 }
