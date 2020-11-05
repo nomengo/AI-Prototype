@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class DoorController : MonoBehaviour
 {
     [SerializeField]private Animator animator;
     bool doorOpen;
-
     public GameObject Tooltip;
+    public bool IsDoorOpen => doorOpen;
 
     private void Start()
     {
@@ -13,21 +14,12 @@ public class DoorController : MonoBehaviour
         doorOpen = false;
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            doorOpen = true;
-            Doors("Open");
-        }
-    }
-
     private void OnTriggerEnter(Collider coll)
     {
         if(coll.gameObject.tag == "Player")
         {
             Tooltip.SetActive(true);
-            Update();
+            StartCoroutine(CheckCo());
         }
     }
 
@@ -46,6 +38,18 @@ public class DoorController : MonoBehaviour
         animator.SetTrigger(direction);
     }
 
-
+    IEnumerator CheckCo() 
+    {
+        while (true)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                doorOpen = true;
+                Doors("Open");
+                break;
+            }
+            yield return null;
+        }
+    }
 
 }
