@@ -21,6 +21,11 @@ public class DoorController : MonoBehaviour
             Tooltip.SetActive(true);
             StartCoroutine(CheckCo());
         }
+        else if (coll.gameObject.tag == "Agent")
+        {
+            doorOpen = true;
+            Doors("Open");
+        }
     }
 
     private void OnTriggerExit(Collider coll)
